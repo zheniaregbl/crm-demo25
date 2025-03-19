@@ -36,7 +36,6 @@ namespace crm_demo2
 
             long maxId = _RequestController.GetMaxRequestId();
 
-
             foreach (string client in _Clients.Select(client => client.Name).ToList())
             {
                 clientField.Items.Add(client);

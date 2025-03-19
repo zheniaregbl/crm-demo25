@@ -22,6 +22,23 @@ namespace crm_demo2
             _dbHelper = new DBHelper();
         }
 
+        public List<string> GetAllRequestStatus()
+        {
+            var statuses = new List<string>();
+
+            string query = "select unnest(enum_range(null::request_status))";
+
+            using (var command = new NpgsqlCommand(query, _dbHelper.GetConnection()))
+            {
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read()) { statuses.Add(reader.GetString(0)); }
+                }
+            }
+
+            return statuses;
+        }
+
         public List<Request> GetAllRequests()
         {
             var requests = new List<Request>();

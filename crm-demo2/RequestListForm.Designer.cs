@@ -52,16 +52,19 @@
             statusField.DropDownStyle = ComboBoxStyle.DropDownList;
             statusField.Font = new Font("Segoe UI", 12F);
             statusField.FormattingEnabled = true;
-            statusField.Items.AddRange(new object[] { "любой", "новая", "в процессе ремонта", "готова к выдаче" });
+            statusField.Items.AddRange(new object[] { "любой" });
             statusField.Location = new Point(221, 39);
             statusField.Name = "statusField";
             statusField.Size = new Size(186, 29);
             statusField.TabIndex = 1;
+            statusField.SelectedIndexChanged += statusField_SelectedIndexChanged;
             // 
             // requestDataGridView
             // 
             requestDataGridView.AllowUserToAddRows = false;
             requestDataGridView.AllowUserToDeleteRows = false;
+            requestDataGridView.AllowUserToResizeColumns = false;
+            requestDataGridView.AllowUserToResizeRows = false;
             requestDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             requestDataGridView.BackgroundColor = SystemColors.Control;
             requestDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;

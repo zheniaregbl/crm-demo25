@@ -27,6 +27,13 @@ namespace crm_demo2
 
         private void RequestListForm_Load(object sender, EventArgs e)
         {
+            List<string> requestStatuses = _RequestController.GetAllRequestStatus();
+
+            foreach (string status in requestStatuses)
+            {
+                statusField.Items.Add(status);
+            }
+
             _RefreshDataGrid(searchField.Text, statusField.Text);
         }
 
@@ -115,6 +122,12 @@ namespace crm_demo2
         {
             _RequestController.DeleteRequest(_Requests[requestDataGridView.CurrentRow.Index].Id);
             _RefreshDataGrid(searchField.Text, statusField.Text);
+        }
+
+        private void statusField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_RequestController != null && searchField.Text == "")
+                _RefreshDataGrid(searchField.Text, statusField.Text);
         }
     }
 }
